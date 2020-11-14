@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef } from "react";
-import "./src/styles/Post.css";
+import "../styles/Post.css";
 import Avatar from "@material-ui/core/Avatar";
 import { db } from "../firebase";
 import firebase from "firebase";

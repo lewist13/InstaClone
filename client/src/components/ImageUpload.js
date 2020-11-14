@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import firebase from "firebase";
 import { storage, db } from "../firebase";
-import "../src/stylesImageUpload.css";
+import "../styles/ImageUpload.css";
 import { Input, Button } from "@material-ui/core";
 
 const ImageUpload = ({ username }) => {

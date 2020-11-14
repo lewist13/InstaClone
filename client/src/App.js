@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-import "../src/styles/App.css";
-import Post from "../src/components/Post";
-import ImageUpload from "../src/components/ImageUpload";
-import { db, auth } from "../src/firebase";
-import { Button, Avatar, makeStyles, Model, Input } from "@material-ui/core";
+import "./styles/App.css";
+import Post from "./components/Post";
+import ImageUpload from "./components/ImageUpload";
+import { db, auth } from "./firebase";
+import { Button, Avatar, makeStyles, Modal, Input } from "@material-ui/core";
 import FlipMove from "react-flip-move";
 import InstagramEmbed from "react-instagram-embed";
 
-function getModelStyle() {
+function getModalStyle() {
   const top = 50;
   const left = 50;
+
   return {
     height: "300px",
     top: `${top}%`,
-    left: `${left}`,
+    left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
   };
 }
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const [modelStyle] = useState(getModelStyle);
+  const [modalStyle] = useState(getModalStyle);
   const [posts, setPosts] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -93,8 +94,8 @@ function App() {
 
   return (
     <div className="app">
-      <Model open={open} onClose={() => setOpen(false)}>
-        <div style={modelStyle} className={classes.paper}>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <div style={modalStyle} className={classes.paper}>
           <form className="app__login">
             <center>
               <img
@@ -119,10 +120,10 @@ function App() {
             <Button onClick={handleLogin}>Login</Button>
           </form>
         </div>
-      </Model>
+      </Modal>
 
-      <Model open={registerOpen} onClose={() => setRegisterOpen(false)}>
-        <div style={modelStyle} className={classes.paper}>
+      <Modal open={registerOpen} onClose={() => setRegisterOpen(false)}>
+        <div style={modalStyle} className={classes.paper}>
           <form className="app__login">
             <center>
               <img
@@ -152,7 +153,7 @@ function App() {
             <Button onClick={handleRegister}>Register</Button>
           </form>
         </div>
-      </Model>
+      </Modal>
       <div className="app__header">
         <img
           className="app__headerImage"
