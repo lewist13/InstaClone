@@ -31,9 +31,9 @@ Create your own posts using pictures or videos after signing up and login.
 
 ## Future Updates
 
-- [ ] Create front-end that displays nav bar
-- [ ] Be able to sign up and login using input
-- [ ] Create a fake feed
+- [x] Create front-end that displays nav bar
+- [x] Be able to sign up and login using input
+- [x] Create a fake feed
 - [ ] Create backend to support passwords and authentication
 
 ---
