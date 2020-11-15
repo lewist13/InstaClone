@@ -16,10 +16,10 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// db config
 
 // api routes
 app.get("/", (req, res) => res.status(200).send("yoooo it works"));
+app.post("/upload", (req, res) => {});
 
 // listen
 app.listen(PORT, async () => {
