@@ -11,6 +11,13 @@ const User = require("./db/models/User");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+const pusher = new Pusher({
+  appId: "1107606",
+  key: "c1fc82a16b29639631a6",
+  secret: "d62e0950f7de5677bd52",
+  cluster: "us2",
+  useTLS: true,
+});
 // middleware
 app.use(logger("dev"));
 app.use(express.json());
