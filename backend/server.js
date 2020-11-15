@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const Pusher = require("pusher");
 const connection = require("./db/connection");
 const User = require("./db/models/User");
+const { post } = require("./db/models/User");
 
 // app config
 const PORT = process.env.PORT || 3001;
@@ -24,6 +25,28 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+mongoose.connection.once("open", () => {
+  const changeStream = mongoose.connection.collection("posts").watch();
+  changeStream.on("change", (change) => {
+    console.log("CHS Triggered on pusher...");
+    console.log(change);
+    console.log("End of Change");
+
+    if (change.operationType === "insert") {
+      console.log("Triggering Pusher IMG UPLOAD");
+
+      const postDetails = change.fullDocument;
+      pusher.trigger("posts", "inserted", {
+        user: postDetails.user,
+        caption: postDetails.caption,
+        image: postDetails.image,
+      });
+    } else {
+      console.log("Unknown Trigger");
+    }
+  });
+});
 
 // api routes
 app.get("/", (req, res) => res.status(200).send("yoooo it works"));

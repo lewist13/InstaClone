@@ -6,6 +6,7 @@ import { db, auth } from "./firebase";
 import { Button, Avatar, makeStyles, Modal, Input } from "@material-ui/core";
 import FlipMove from "react-flip-move";
 import InstagramEmbed from "react-instagram-embed";
+import axios from "./axios";
 
 function getModalStyle() {
   const top = 50;
@@ -67,12 +68,16 @@ function App() {
   }, [user, username]);
 
   useEffect(() => {
-    db.collection("posts")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) =>
-        setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })))
-      );
+    const fetchPosts = async () =>
+      await axios.get("/sync").then((res) => {
+        console.log(res);
+        setPosts(res.data.map((item) => item));
+      });
+
+    fetchPosts();
   }, []);
+
+  console.log("posts are >>>", posts);
 
   const handleLogin = (e) => {
     e.preventDefault();
