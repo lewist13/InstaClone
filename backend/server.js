@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Pusher = require("pusher");
 const connection = require("./db/connection");
+const User = require("./db/models/User");
 
 // app config
 const PORT = process.env.PORT || 3001;
@@ -19,8 +20,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // api routes
 app.get("/", (req, res) => res.status(200).send("yoooo it works"));
-app.post("/upload", (req, res) => {});
-
+app.post("/upload", (req, res) => {
+  const body = req.body;
+  User.create(body, (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).send(data);
+    }
+  });
+});
+app.get("/sync", (req, res) => {
+  User.find((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
 // listen
 app.listen(PORT, async () => {
   try {
