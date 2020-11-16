@@ -6,9 +6,11 @@
 
 ---
 
-### Overview
+### Overview/Getting Started
 
 Creating Instagram all over again to learn all the nooks and crannies of the back-end while also showing front-end knowledge.
+
+Usage: Upload your own pictures after signing up and login and share them with the world.
 
 ---
 
@@ -23,17 +25,10 @@ Creating Instagram all over again to learn all the nooks and crannies of the bac
 
 ---
 
-### Getting Started
-
-Create your own posts using pictures or videos after signing up and login.
-
----
-
-## Future Updates
+## Goals
 
 - [x] Create front-end that displays nav bar
 - [x] Be able to sign up and login using input
 - [x] Create a fake feed
-- [ ] Create backend to support passwords and authentication
-
----
+- [x] Create backend to support passwords and authentication
+- [ ] Make the front end look better
