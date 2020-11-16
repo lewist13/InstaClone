@@ -6,7 +6,8 @@ import { db, auth } from "./firebase";
 import { Button, Avatar, makeStyles, Modal, Input } from "@material-ui/core";
 import FlipMove from "react-flip-move";
 import InstagramEmbed from "react-instagram-embed";
-import axios from "./axios";
+// import axios from "./axios";
+// import Pusher from "pusher-js";
 
 function getModalStyle() {
   const top = 50;
@@ -68,14 +69,27 @@ function App() {
   }, [user, username]);
 
   useEffect(() => {
-    const fetchPosts = async () =>
-      await axios.get("/sync").then((res) => {
-        console.log(res);
-        setPosts(res.data.map((item) => item));
-      });
-
-    fetchPosts();
+    // const fetchPosts = async () =>
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })))
+      );
   }, []);
+  // const pusher = new Pusher("c1fc82a16b29639631a6", {
+  //   cluster: "us2",
+  // });
+
+  // const channel = pusher.subscribe("posts");
+  // channel.bind("inserted", (data) => {
+  //   console.log("data recieved", data);
+  //   fetchPosts();
+  // });
+  // });
+
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, []);
 
   console.log("posts are >>>", posts);
 
