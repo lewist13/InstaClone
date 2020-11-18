@@ -1,12 +1,14 @@
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-// const connection = mongoose.connect("mongodb://localhost:27017/instaclone", {
-//   useNewUrlParser: true,
-//   useFindAndModify: true,
-//   useUnifiedTopology: true,
-//   useCreateIndex: true,
-// });
+const connection =
+  "mongodb+srv://matic:itvCu819cDqb79KM@instaclone.vu2tt.mongodb.net/instaclone?retryWrites=true&w=majority";
 
-// mongoose.set("debug", true);
+mongoose.connect(connection, {
+  useNewUrlParser: true,
+  useFindAndModify: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
 
-// module.exports = connection;
+mongoose.set("debug", true);
+module.exports = connection;

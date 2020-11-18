@@ -1,3 +1,4 @@
+const AppRouter = require("./routes/AppRouter");
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
@@ -5,7 +6,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Pusher = require("pusher");
 const connection = require("./db/connection");
-// const dbModel = require("./dbModel");
+const Schema = require("./db/schema");
 // app config
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -25,14 +26,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // db replica set stuff
-const connection_url =
-  "mongodb+srv://matic:itvCu819cDqb79KM@instaclone.vu2tt.mongodb.net/instaclone?retryWrites=true&w=majority";
-mongoose.connect(connection_url, {
-  useNewUrlParser: true,
-  useFindAndModify: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+// const connection_url =
+//   "mongodb+srv://matic:itvCu819cDqb79KM@instaclone.vu2tt.mongodb.net/instaclone?retryWrites=true&w=majority";
+// mongoose.connect(connection_url, {
+//   useNewUrlParser: true,
+//   useFindAndModify: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+// });
 
 // mongoose.connection.once("open", () => {
 //   console.log("DB Connected");
@@ -57,8 +58,9 @@ mongoose.connect(connection_url, {
 //   });
 // });
 
-// api routes
+// API Routes
 app.get("/", (req, res) => res.status(200).send("yoooo it works"));
+app.use("/api", AppRouter);
 app.post("/upload", (req, res) => {
   const body = req.body;
   dbModel.create(body, (err, data) => {
@@ -70,7 +72,7 @@ app.post("/upload", (req, res) => {
   });
 });
 app.get("/sync", (req, res) => {
-  dbModel.find((err, data) => {
+  Schema.find((err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
