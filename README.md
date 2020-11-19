@@ -29,6 +29,7 @@ Usage: Upload your own pictures after signing up and login and share them with t
 
 - [x] Create front-end that displays nav bar
 - [x] Be able to sign up and login using input
-- [x] Create a fake feed
 - [x] Create backend to support passwords and authentication
+- [ ] Create nav-bar to switch through pages
+- [ ] Create a fake feed using seed/faker
 - [ ] Make the front end look better
