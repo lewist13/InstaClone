@@ -7,12 +7,14 @@ module.exports = new Schema(
       ref: "users",
     },
     caption: String,
-    postId: String,
+    // postId: String,
     image: String,
-    comments: {
-      type: Schema.Types.ObjectId,
-      ref: "comment",
-    },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "comment",
+      },
+    ],
   },
   { timestamps: true }
 );

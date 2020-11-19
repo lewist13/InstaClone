@@ -2,15 +2,17 @@ const { Schema } = require("mongoose");
 
 module.exports = new Schema(
   {
-    caption: String,
-    image: String,
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "users",
+    name: {
+      type: String,
+      required: true,
     },
-    comments: {
-      type: Schema.Types.ObjectId,
-      ref: "comment",
+    email: {
+      type: String,
+      required: true,
+    },
+    password_digest: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
