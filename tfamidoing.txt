@@ -1,0 +1,5 @@
+// CLIENT
+finish signup
+finish router
+create landingpage(login/signup) and home(all posts)
+create nav
