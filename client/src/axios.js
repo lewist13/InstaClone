@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const ApiClient = axios.create({ baseURL: "http://localhost:3001" });
+const ApiClient = axios.create({
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? `${window.location.orgin}/api`
+      : "http://localhost:3001",
+});
 
 ApiClient.interceptors.request.use(
   async (config) => {

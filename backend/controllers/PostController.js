@@ -49,8 +49,11 @@ const CreatePost = async (req, res) => {
 };
 
 const DeletePost = async (req, res) => {
+  console.log("Delete Post:", req.params.post_id);
   try {
-    await Comments.deleteMany({ _id: { $in: post.comments } });
+    const post = await Posts.findById(req.params.post_id);
+    console.log("Found Post", post);
+    await Comments.deleteOne({ _id: { $in: post.comments } });
     await Posts.findByIdAndDelete(req.params.post_id);
     res.send({ msg: "Post deleted" });
   } catch (error) {

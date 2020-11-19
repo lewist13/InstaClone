@@ -45,6 +45,9 @@ const Post = forwardRef(
             src="/static/images/avatar/1.jpg"
           />
           <h3>{username}</h3>
+          <button onClick={() => this.props.history.push(`/edit/${postId}`)}>
+            Edit Post
+          </button>
         </div>
 
         <img className="post__image" src={imageUrl} alt="post" />

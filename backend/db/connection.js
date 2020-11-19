@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
-const connection =
-  "mongodb+srv://matic:itvCu819cDqb79KM@instaclone.vu2tt.mongodb.net/instaclone?retryWrites=true&w=majority";
+const connection = mongoose.connect(
+  process.env.NODE_ENV === "production"
+    ? process.env.DATABASE_URL
+    : "mongodb://localhost:27017/instaclone"
+);
 
 mongoose.connect(connection, {
   useNewUrlParser: true,
