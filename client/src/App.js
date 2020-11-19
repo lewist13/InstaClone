@@ -68,14 +68,14 @@ function App() {
     };
   }, [user, username]);
 
-  useEffect(() => {
-    // const fetchPosts = async () =>
-    db.collection("posts")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) =>
-        setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })))
-      );
-  }, []);
+  // useEffect(() => {
+  //   const fetchPosts = async () =>
+  //   db.collection("posts")
+  //     .orderBy("timestamp", "desc")
+  //     .onSnapshot((snapshot) =>
+  //       setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })))
+  //     );
+  // }, []);
   // const pusher = new Pusher("c1fc82a16b29639631a6", {
   //   cluster: "us2",
   // });
