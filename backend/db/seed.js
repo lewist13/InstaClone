@@ -1,7 +1,7 @@
 const faker = require("faker");
 const connection = require("./connection");
 const { Types } = require("mongoose");
-const { User, TravelLog, Comment } = require("./schema");
+const { User, Posts, Comments } = require("./schema");
 
 const users = new Array(50).fill().map(() => ({
   _id: Types.ObjectId(),
@@ -16,11 +16,8 @@ const comments = new Array(500).fill().map(() => ({
 }));
 const posts = new Array(100).fill().map(() => ({
   _id: Types.ObjectId(),
-  title: faker.random.words(),
-  image_url: faker.random.image(),
-  popularity_rating: faker.random.number(),
-  description: faker.lorem.paragraph(),
-  location: faker.address.city(),
+  image: faker.random.image(),
+  caption: faker.lorem.paragraph(),
   comments: comments
     .slice(
       Math.floor(Math.random() * comments.length),
