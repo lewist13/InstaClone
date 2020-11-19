@@ -7,9 +7,7 @@ export default class CreatePost extends Component {
   constructor() {
     super();
     this.state = {
-      userId: "",
       caption: "",
-      postId: "",
       image: "",
       comments: [],
     };
