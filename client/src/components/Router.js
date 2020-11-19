@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
-import moduleName from '../pages/UpdatePost'
+import Update from '../pages/UpdatePost'
 import Post from "./components/Post";
 import ImageUpload from "./components/ImageUpload";
 
