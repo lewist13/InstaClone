@@ -36,55 +36,55 @@
 //       setComment("");
 //     };
 
-//     return (
-//       <div className="post" ref={ref}>
-//         <div className="post__header">
-//           <Avatar
-//             className="post__avatar"
-//             alt={username}
-//             src="/static/images/avatar/1.jpg"
-//           />
-//           <h3>{username}</h3>
-//           <button onClick={() => this.props.history.push(`/edit/${postId}`)}>
-//             Edit Post
-//           </button>
-//         </div>
+    return (
+      <div className="post" ref={ref}>
+        <div className="post__header">
+          <Avatar
+            className="post__avatar"
+            alt={username}
+            src="/static/images/avatar/1.jpg"
+          />
+          <h3>{username}</h3>
+          <button onClick={() => this.props.history.push(`/edit/${postId}`)}>
+            Edit Post
+          </button>
+        </div>
 
-//         <img className="post__image" src={imageUrl} alt="post" />
-//         <h4 className="post__text">
-//           {username} <span className="post__caption">{caption}</span>
-//         </h4>
+        <img className="post__image" src={imageUrl} alt="post" />
+        <h4 className="post__text">
+          {username} <span className="post__caption">{caption}</span>
+        </h4>
 
-//         <div className="post__comments">
-//           {comments.map((comment) => (
-//             <p>
-//               <b>{comment.username}</b> {comment.text}
-//             </p>
-//           ))}
-//         </div>
+        <div className="post__comments">
+          {comments.map((comment) => (
+            <p>
+              <b>{comment.username}</b> {comment.text}
+            </p>
+          ))}
+        </div>
 
-//         {user && (
-//           <form className="post__commentBox">
-//             <input
-//               className="post__input"
-//               type="text"
-//               placeholder="Add a comment..."
-//               value={comment}
-//               onChange={(e) => setComment(e.target.value)}
-//             />
-//             <button
-//               disabled={!comment}
-//               className="post__button"
-//               type="submit"
-//               onClick={postComment}
-//             >
-//               Post
-//             </button>
-//           </form>
-//         )}
-//       </div>
-//     );
-//   }
-// );
+        {user && (
+          <form className="post__commentBox">
+            <input
+              className="post__input"
+              type="text"
+              placeholder="Add a comment..."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button
+              disabled={!comment}
+              className="post__button"
+              type="submit"
+              onClick={postComment}
+            >
+              Post
+            </button>
+          </form>
+        )}
+      </div>
+    );
+  }
+);
 
 // export default Post;

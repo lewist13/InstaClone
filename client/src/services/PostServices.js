@@ -14,6 +14,7 @@ export const __GetPosts = async (page, limit) => {
     const res = await ApiClient.get(
       `/posts?page=${page || 1}&limit=${limit || 10}`
     );
+    console.log(res.data);
     return res.data;
   } catch (error) {
     throw error;
