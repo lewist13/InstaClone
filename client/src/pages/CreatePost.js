@@ -48,13 +48,6 @@ export default class CreatePost extends Component {
                 value={image}
                 onChange={this.handleChange}
               />
-              <TextInput
-                fieldType="textfield"
-                placeholder="Comments"
-                name="comments"
-                value={comments}
-                onChange={this.handleChange}
-              />
               <button>Post</button>
             </form>
           </div>
