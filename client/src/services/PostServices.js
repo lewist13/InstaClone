@@ -3,6 +3,7 @@ import ApiClient from "../axios";
 export const __UploadPost = async (formData, userId) => {
   try {
     const res = await ApiClient.post(`/posts/${userId}/?active=true`, formData);
+    console.log(res.data);
     return res.data;
   } catch (error) {
     throw error;

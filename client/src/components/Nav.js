@@ -10,7 +10,7 @@ export default ({ authenticated, currentUser, className }) => {
         <NavLink activeClassName="nav-active" to="/profile">
           Profile
         </NavLink>
-        <NavLink activeClassName="nav-active" to="/">
+        <NavLink activeClassName="nav-active" to="/feed">
           Home
         </NavLink>
         <NavLink activeClassName="nav-active" to="/upload">
@@ -29,7 +29,7 @@ export default ({ authenticated, currentUser, className }) => {
     <header className={className}>
       <div className="icon"></div>
       <nav>
-        <NavLink activeClassName="nav-active" to="/">
+        <NavLink activeClassName="nav-active" to="/feed">
           Home
         </NavLink>
         <NavLink activeClassName="nav-active" to="/register">

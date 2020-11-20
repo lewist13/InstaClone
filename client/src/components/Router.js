@@ -5,10 +5,11 @@ import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
 import ProtectedRoute from "./ProtectedRoute";
-import Layout from "../components/Layout";
+// import Layout from "../components/Layout";
 import Profile from "../pages/Profile";
 import UpdatePost from "../pages/UpdatePost";
 import LandingPage from "../pages/LandingPage";
+import CreatePost from "../pages/CreatePost";
 // import Update from "../pages/UpdatePost";
 // import Post from "./components/Post";
 // import ImageUpload from "./components/ImageUpload";
@@ -73,7 +74,7 @@ class Router extends Component {
               path="/"
               component={(props) => <LandingPage {...props} />}
             />
-            <ProtectedRoute
+            <Route
               authenticated={this.state.authenticated}
               path="/feed"
               component={(props) => (
@@ -87,14 +88,26 @@ class Router extends Component {
             />
             <ProtectedRoute
               authenticated={this.state.authenticated}
+              path="/upload"
+              component={(props) => (
+                <Home
+                  currentUser={this.state.currentUser}
+                  authenticated={this.state.authenticated}
+                >
+                  <CreatePost {...props} currentUser={this.state.currentUser} />
+                </Home>
+              )}
+            />
+            <ProtectedRoute
+              authenticated={this.state.authenticated}
               path="/edit/:post_id"
               component={(props) => (
-                <Layout
+                <Home
                   currentUser={this.state.currentUser}
                   authenticated={this.state.authenticated}
                 >
                   <UpdatePost {...props} currentUser={this.state.currentUser} />
-                </Layout>
+                </Home>
               )}
             />
           </Switch>

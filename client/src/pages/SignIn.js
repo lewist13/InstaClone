@@ -15,6 +15,7 @@ export default class SignIn extends Component {
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value, formError: false });
+    console.log(this.state);
   };
 
   handleSubmit = async (e) => {
@@ -27,6 +28,7 @@ export default class SignIn extends Component {
       );
     } catch (error) {
       this.setState({ formError: true });
+      console.log(error);
     }
   };
 
@@ -46,7 +48,7 @@ export default class SignIn extends Component {
           <TextInput
             placeholder="email"
             name="email"
-            type="text"
+            type="email"
             value={email}
             onChange={this.handleChange}
           />
