@@ -76,9 +76,11 @@ class Router extends Component {
             />
             <Route
               authenticated={this.state.authenticated}
+              exact
               path="/feed"
               component={(props) => (
                 <Home
+                  {...props}
                   currentUser={this.state.currentUser}
                   authenticated={this.state.authenticated}
                 >
@@ -86,28 +88,13 @@ class Router extends Component {
                 </Home>
               )}
             />
-            <ProtectedRoute
-              authenticated={this.state.authenticated}
-              path="/upload"
-              component={(props) => (
-                <Home
-                  currentUser={this.state.currentUser}
-                  authenticated={this.state.authenticated}
-                >
-                  <CreatePost {...props} currentUser={this.state.currentUser} />
-                </Home>
-              )}
-            />
+
             <Route
-              path="/feed/update/:post_id"
-              render={(props) => <UpdatePost {...props} />}
-            />
-            <Route
-              path="/edit/:post_id"
+              path="/feed/:post_id"
               component={(props) => (
-                <Home {...props}>
-                  <UpdatePost {...props} />
-                </Home>
+                // <Home {...props}>
+                <UpdatePost {...props} />
+                // </Home>
               )}
             />
           </Switch>

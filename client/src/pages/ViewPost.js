@@ -49,10 +49,7 @@ export default class ViewPost extends Component {
         {posts.length ? (
           posts.map((post) => (
             <div key={post._id}>
-              <div
-                onClick={() => this.props.history.push(`/posts/${post._id}`)}
-                className="post__header"
-              >
+              <div onClick={() => this.props.history.push(`/feed/${post._id}`)}>
                 <h2>{post.caption} </h2>
                 <h2>{post.image} </h2>
                 <h2>{post.comments} </h2>

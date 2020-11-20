@@ -13,5 +13,5 @@ const connection = mongoose.connect("mongodb://localhost:27017/instaclone", {
   useCreateIndex: true,
 });
 
-mongoose.set("debug", true);
+// mongoose.set("debug", true);
 module.exports = connection;

@@ -67,3 +67,16 @@ create nav
 
 
 *** nodemon not in devDependencies
+
+ <ProtectedRoute
+              authenticated={this.state.authenticated}
+              path="/upload"
+              component={(props) => (
+                <Home
+                  currentUser={this.state.currentUser}
+                  authenticated={this.state.authenticated}
+                >
+                  <CreatePost {...props} currentUser={this.state.currentUser} />
+                </Home>
+              )}
+            />

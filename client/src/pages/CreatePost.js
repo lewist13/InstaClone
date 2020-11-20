@@ -9,7 +9,6 @@ export default class CreatePost extends Component {
     this.state = {
       caption: "",
       image: "",
-      comments: [],
     };
   }
   handleChange = ({ target }) => {
@@ -18,14 +17,16 @@ export default class CreatePost extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const post = await __UploadPost(this.state, this.props.currentUser._id);
-      post.save();
-      console.log(post);
+      console.log(this.props.currentUser);
+      await __UploadPost(this.state, this.props.currentUser._id);
+      console.log(this.props.history);
+      this.props.history.push("/feed");
     } catch (error) {
       console.log(error);
     }
   };
   render() {
+    console.log(this.props);
     const { caption, image } = this.state;
     return (
       <div className="post">

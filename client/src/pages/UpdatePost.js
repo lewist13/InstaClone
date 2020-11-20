@@ -36,14 +36,14 @@ export default class UpdatePost extends Component {
     e.preventDefault();
     try {
       await __UpdatePost(this.state, this.props.match.params.post_id);
-      this.props.history.push("/profile");
+      this.props.history.push("/feed");
     } catch (error) {
       console.log(error);
     }
   };
 
   render() {
-    const { comment, image, caption } = this.state;
+    const { image, caption } = this.state;
     return (
       <div className="upload content">
         <form className="flex-col" onSubmit={this.handleSubmit}>
@@ -53,12 +53,7 @@ export default class UpdatePost extends Component {
             value={image}
             onChange={this.handleChange}
           />
-          <TextInput
-            placeholder="Update Comment"
-            name="comment"
-            value={comment}
-            onChange={this.handleChange}
-          />
+
           <TextInput
             placeholder="Update Caption"
             name="caption"

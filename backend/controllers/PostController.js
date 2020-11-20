@@ -83,16 +83,18 @@ const DeletePost = async (req, res) => {
 //   }
 // };
 
-const UpdatePost = async (req, res) => {
+const UpdatePost = async (request, response) => {
   try {
+    const { post_id } = request.params;
+    console.log(post_id);
     await Posts.findByIdAndUpdate(
-      req.params.post_id,
-      {
-        ...req.body,
-      },
-      { new: true, useFindAndModify: false }(err, (d) =>
-        err ? err : res.send(d)
-      )
+      post_id,
+      request.body,
+      { new: true },
+      (error, post) => {
+        console.log(post);
+        return response.status(200).send(post);
+      }
     );
   } catch (error) {
     throw error;

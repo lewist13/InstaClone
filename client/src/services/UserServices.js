@@ -37,3 +37,13 @@ export const __LoginUser = async (userData) => {
     throw error;
   }
 };
+
+export const __UpdateName = async (formData, user_id) => {
+  try {
+    const res = await ApiClient.put(`/users/${user_id}?active=true`, formData);
+    console.log(res.data);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};

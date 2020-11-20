@@ -52,6 +52,19 @@ const SignInUser = async (req, res, next) => {
   }
 };
 
+const UpdateName = async (req, res) => {
+  try {
+    await user.findByIdAndUpdate(
+      req.params.user_id,
+      {
+        ...req.body,
+      },
+      { new: true, useFindAndModify: false },
+      (err, (d) => (err ? err : res.send(d)))
+    );
+  } catch (error) {}
+};
+
 const RefreshSession = (req, res) => {
   try {
     const token = res.locals.token;
@@ -66,4 +79,5 @@ module.exports = {
   CreateUser,
   SignInUser,
   RefreshSession,
+  UpdateName,
 };

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { __DeletePost } from "../services/PostServices";
-// import { __GetProfile } from "../services/UserServices";
-import { __GetPosts } from "../services/PostServices";
+import { __GetProfile } from "../services/UserServices";
+// import { __GetPosts } from "../services/PostServices";
 
 export default class Profile extends Component {
   constructor() {
@@ -19,7 +19,7 @@ export default class Profile extends Component {
   getPosts = async () => {
     try {
       console.log(this.props);
-      const profileData = await __GetPosts(this.props.currentUser._id);
+      const profileData = await __GetProfile(this.props.currentUser._id);
       this.setState({ posts: profileData.posts });
     } catch (error) {
       this.setState({ postFetchError: true });
@@ -38,13 +38,24 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div className="post">
+      <div className="profile">
         <div>
           {this.state.posts.length ? (
-            <div className="post__commentBox">
+            <div className="post-content wrapper flex-row">
               {this.state.posts.map((post) => (
                 <div key={post._id}>
-                  <div className="post__image">
+                  <div>
+                    <div
+                      onClick={() =>
+                        this.props.history.push(`/posts/${post._id}`)
+                      }
+                    ></div>
+                    <div>
+                      <h3>{post.caption}</h3>
+                    </div>
+                  </div>
+                  <img src={post.image} alt="sf" />
+                  <div>
                     <button
                       onClick={() =>
                         this.props.history.push(`/edit/${post._id}`)
