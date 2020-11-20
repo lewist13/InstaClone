@@ -23,7 +23,7 @@ export default class SignIn extends Component {
       const loginData = await __LoginUser(this.state);
       console.log(loginData, "Login Data here");
       this.props.toggleAuthenticated(true, loginData.user, () =>
-        this.props.history.push("/feed/:user_id")
+        this.props.history.push("/feed")
       );
     } catch (error) {
       this.setState({ formError: true });
@@ -35,7 +35,7 @@ export default class SignIn extends Component {
     return (
       <div className="app">
         <Nav />
-        <form className="app__login">
+        <form className="app__login" onSubmit={this.handleSubmit}>
           <center>
             <img
               className="app__headerImage"

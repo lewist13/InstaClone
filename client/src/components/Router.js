@@ -36,7 +36,7 @@ class Router extends Component {
             currentUser: session.user,
             authenticated: true,
           },
-          () => this.props.history.push("/profile")
+          () => this.props.history.push("/feed")
         );
       } catch (error) {
         this.setState({ currentUser: null, authenticated: false });
@@ -75,7 +75,7 @@ class Router extends Component {
             />
             <ProtectedRoute
               authenticated={this.state.authenticated}
-              path="/feed/:user_id"
+              path="/feed"
               component={(props) => (
                 <Home
                   currentUser={this.state.currentUser}

@@ -11,16 +11,16 @@ const Schema = require("./db/schema");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-const pusher = new Pusher({
-  appId: "1107606",
-  key: "c1fc82a16b29639631a6",
-  secret: "d62e0950f7de5677bd52",
-  cluster: "us2",
-  useTLS: true,
-});
+// const pusher = new Pusher({
+//   appId: "1107606",
+//   key: "c1fc82a16b29639631a6",
+//   secret: "d62e0950f7de5677bd52",
+//   cluster: "us2",
+//   useTLS: true,
+// });
 // middleware
 app.use(logger("dev"));
-app.use(express.json());
+// app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -61,25 +61,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // API Routes
 app.get("/", (req, res) => res.status(200).send("yoooo it works"));
 app.use("/api", AppRouter);
-app.post("/upload", (req, res) => {
-  const body = req.body;
-  dbModel.create(body, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(201).send(data);
-    }
-  });
-});
-app.get("/sync", (req, res) => {
-  Schema.find((err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(data);
-    }
-  });
-});
+// app.post("/upload", (req, res) => {
+//   const body = req.body;
+//   dbModel.create(body, (err, data) => {
+//     if (err) {
+//       res.status(500).send(err);
+//     } else {
+//       res.status(201).send(data);
+//     }
+//   });
+// });
+// app.get("/sync", (req, res) => {
+//   Schema.find((err, data) => {
+//     if (err) {
+//       res.status(500).send(err);
+//     } else {
+//       res.status(200).send(data);
+//     }
+//   });
+// });
 // listen
 app.listen(PORT, async () => {
   try {
