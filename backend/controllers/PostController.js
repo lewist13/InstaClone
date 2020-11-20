@@ -61,6 +61,28 @@ const DeletePost = async (req, res) => {
   }
 };
 
+// const EditPost = async (request, response) => {
+//   try {
+//     const { id } = request.params;
+//     await Post.findByIdAndUpdate(
+//       id,
+//       request.body,
+//       { new: true },
+//       (error, post) => {
+//         if (error) {
+//           response.status(500).send(error);
+//         }
+//         if (!post) {
+//           response.status(500).send("post not found");
+//         }
+//         return response.status(200).json(post);
+//       }
+//     );
+//   } catch (error) {
+//     return response.status(500).send(error.message);
+//   }
+// };
+
 const UpdatePost = async (req, res) => {
   try {
     await Posts.findByIdAndUpdate(
@@ -68,8 +90,9 @@ const UpdatePost = async (req, res) => {
       {
         ...req.body,
       },
-      { new: true, useFindAndModify: false }
-      // (err, (d) => (err ? err : res.send(d)))
+      { new: true, useFindAndModify: false }(err, (d) =>
+        err ? err : res.send(d)
+      )
     );
   } catch (error) {
     throw error;
@@ -82,4 +105,5 @@ module.exports = {
   CreatePost,
   DeletePost,
   UpdatePost,
+  // EditPost,
 };

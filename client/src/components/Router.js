@@ -82,7 +82,7 @@ class Router extends Component {
                   currentUser={this.state.currentUser}
                   authenticated={this.state.authenticated}
                 >
-                  <Profile {...props} currentUser={this.state.currentUser} />
+                  <Profile {...props} />
                 </Home>
               )}
             />
@@ -98,15 +98,15 @@ class Router extends Component {
                 </Home>
               )}
             />
-            <ProtectedRoute
-              authenticated={this.state.authenticated}
+            <Route
+              path="/feed/update/:post_id"
+              render={(props) => <UpdatePost {...props} />}
+            />
+            <Route
               path="/edit/:post_id"
               component={(props) => (
-                <Home
-                  currentUser={this.state.currentUser}
-                  authenticated={this.state.authenticated}
-                >
-                  <UpdatePost {...props} currentUser={this.state.currentUser} />
+                <Home {...props}>
+                  <UpdatePost {...props} />
                 </Home>
               )}
             />

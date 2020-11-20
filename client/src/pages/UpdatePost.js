@@ -3,8 +3,8 @@ import TextInput from "../components/TextInput";
 import { __GetPost, __UpdatePost } from "../services/PostServices";
 
 export default class UpdatePost extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       caption: "",
       image: "",
@@ -21,7 +21,7 @@ export default class UpdatePost extends Component {
       this.setState({
         comment: post.comment,
         caption: post.caption,
-        imageUrl: post.postUrl,
+        image: post.image,
       });
     } catch (error) {
       console.log(error);
@@ -43,14 +43,14 @@ export default class UpdatePost extends Component {
   };
 
   render() {
-    const { comment, imageUrl, caption } = this.state;
+    const { comment, image, caption } = this.state;
     return (
       <div className="upload content">
         <form className="flex-col" onSubmit={this.handleSubmit}>
           <TextInput
             placeholder="Update Image"
             name="image"
-            value={imageUrl}
+            value={image}
             onChange={this.handleChange}
           />
           <TextInput

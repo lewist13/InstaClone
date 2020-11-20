@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { __GetPosts } from "../services/PostServices";
+import { __DeletePost } from "../services/PostServices";
 // import Avatar from "@material-ui/core/Avatar";
 
 export default class ViewPost extends Component {
@@ -19,6 +20,7 @@ export default class ViewPost extends Component {
     try {
       const posts = await __GetPosts(this.state.currentPage);
       this.setState({ posts: [...this.state.posts, ...posts] });
+      console.log(posts);
     } catch (error) {
       console.log(error);
     }
@@ -30,20 +32,35 @@ export default class ViewPost extends Component {
       () => this.getPosts()
     );
 
+  deletePost = async (id) => {
+    try {
+      const postsToKeep = this.state.posts.filter((post) => post._id !== id);
+      this.setState({ posts: postsToKeep });
+      await __DeletePost(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   render() {
     const { posts } = this.state;
     return (
       <div className="post">
         {posts.length ? (
           posts.map((post) => (
-            <div
-              key={post._id}
-              onClick={() => this.props.history.push(`/posts/${post._id}`)}
-              className="post__header"
-            >
-              <h2>{post.caption} </h2>
-              <h2>{post.image} </h2>
-              <h2>{post.comments} </h2>
+            <div key={post._id}>
+              <div
+                onClick={() => this.props.history.push(`/posts/${post._id}`)}
+                className="post__header"
+              >
+                <h2>{post.caption} </h2>
+                <h2>{post.image} </h2>
+                <h2>{post.comments} </h2>
+                <button onClick={() => console.log(post._id)}>Edit</button>
+                <button onClick={() => this.deletePost(post._id)}>
+                  Delete
+                </button>
+              </div>
             </div>
           ))
         ) : (

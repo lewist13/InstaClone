@@ -33,8 +33,11 @@ export const __GetPost = async (postId) => {
 
 export const __UpdatePost = async (formData, postId) => {
   try {
-    const res = await ApiClient.put(`/posts/${postId}?active=true`, formData);
-    console.log(res.data);
+    const res = await ApiClient.put(
+      `/posts/update/${postId}?active=true`,
+      formData
+    );
+    console.log("Data here", res.data);
     return res.data;
   } catch (error) {
     throw error;

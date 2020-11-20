@@ -64,3 +64,6 @@ create nav
 
 // Router
 <Route exact path="/" component={() => <Home />} />
+
+
+*** nodemon not in devDependencies
