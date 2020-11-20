@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Avatar from "@material-ui/core/Avatar";
 import { __GetPost } from "../services/PostServices";
 import "../styles/App.css";
 export default class ViewPost extends Component {
@@ -24,44 +25,52 @@ export default class ViewPost extends Component {
   };
 
   render() {
-    const { post } = this.state;
+    const { post, name } = this.state;
     if (this.state.post) {
       return (
-        <div className="posts detail">
-          <div className="content-wrapper flex-row">
-            <div className="left-content col-1">
-              <div className="image-wrapper">
-                <img src={post.image_url} alt="post" />
-              </div>
-            </div>
-            <div className="right-content col-2 flex-col">
-              <div className="content-top">
-                <h2>{post.title}</h2>
-                <p>{post.description}</p>
-                <div className="stats flex-row">
-                  <div>
-                    <p>Likes</p>
-                    <p>{post.popularity_rating}</p>
-                  </div>
-                  <div>
-                    <p>Comments</p>
-                    <p>{post.comments.length}</p>
-                  </div>
+        <div className="post">
+          <div className="post__header">
+            <Avatar
+              className="post__avatar"
+              alt={name}
+              src="/static/images/avatar/1.jpg"
+            />
+          </div>
+          <div className="posts detail">
+            <div className="content-wrapper flex-row">
+              <div className="left-content col-1">
+                <div className="image-wrapper">
+                  <img src={post.image} alt="post" />
                 </div>
               </div>
-              <div className="comments">
-                {post.comments.length ? (
-                  post.comments.map((comment) => (
-                    <li className="comment-item" key={comment._id}>
-                      <p>
-                        <Link>{comment.user_id.name}</Link>
-                      </p>
-                      <p>{comment.comment}</p>
-                    </li>
-                  ))
-                ) : (
-                  <h3>No Comments</h3>
-                )}
+              <div className="right-content col-2 flex-col">
+                <div className="content-top">
+                  <p>{post.caption}</p>
+                  <div className="stats flex-row">
+                    <div>
+                      <p>Caption</p>
+                      <p>{post.paragraph}</p>
+                    </div>
+                    <div>
+                      <p>Comments</p>
+                      <p>{post.comments.length}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="comments">
+                  {post.comments.length ? (
+                    post.comments.map((comment) => (
+                      <li className="comment-item" key={comment._id}>
+                        <p>
+                          <Link>{comment.user_id.name}</Link>
+                        </p>
+                        <p>{comment.comment}</p>
+                      </li>
+                    ))
+                  ) : (
+                    <h3>No Comments</h3>
+                  )}
+                </div>
               </div>
             </div>
           </div>
