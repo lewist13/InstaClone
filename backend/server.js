@@ -10,6 +10,7 @@ const Schema = require("./db/schema");
 // app config
 const PORT = process.env.PORT || 3001;
 const app = express();
+const path = require("path");
 
 // const pusher = new Pusher({
 //   appId: "1107606",
@@ -19,6 +20,7 @@ const app = express();
 //   useTLS: true,
 // });
 // middleware
+app.use(express.static(path.join(__dirname, "../", "client", "build")));
 app.use(logger("dev"));
 // app.use(express.json());
 app.use(cors());
@@ -61,6 +63,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // API Routes
 app.get("/", (req, res) => res.status(200).send("yoooo it works"));
 app.use("/api", AppRouter);
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "../", "client", "build", "index.html"))
+);
 // app.post("/upload", (req, res) => {
 //   const body = req.body;
 //   dbModel.create(body, (err, data) => {

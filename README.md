@@ -35,7 +35,7 @@ Usage: Upload your own pictures after registering. Login to share them with the 
 
 ---
 
-## Heirarchy
+## Hierarchy
 
 <a href="https://ibb.co/GT7kczP"><img src="https://i.ibb.co/FV6JgR7/heirarchy-flowchart.png" alt="heirarchy-flowchart" border="0"></a>
 
